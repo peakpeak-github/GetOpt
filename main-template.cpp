@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 {
 	char *optValPtr = NULL;
 	char* nullName = (char*)"(NULL)";
-	char* fileName = NULL;		// output file name template
+	char* fileName = NULL;	
 	double max = 1.1;
 	double min = 1.1;
 	bool verbose = false;
