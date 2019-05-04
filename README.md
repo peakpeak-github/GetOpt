@@ -1,3 +1,3 @@
 # GetOptAndVal
-Lightweight command line option parser
+Lightweight command line option parser in C++
 
