@@ -26,5 +26,8 @@
     <ClInclude Include="getoptandval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mystyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

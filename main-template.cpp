@@ -3,11 +3,12 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "\C\GetOptAndVal\getoptandval.h"
+#include "getoptandval.h"
 
-using namespace std;
-void help();
-
+void help();	// Last in this file
+//
+// Case sensitive option strings
+//
 const char *g_optTable[] =
 {
 	"file",
@@ -15,7 +16,7 @@ const char *g_optTable[] =
 	"min",
 	"w",
 	"h",
-	"Verbose",	// First letter upper case -> Requires no argument
+	"Verbose",	// First letter upper case -> Requires no argument if NOVALUE defined
 	"help"
 };
 const int g_optCount = sizeof(g_optTable) / sizeof(g_optTable[0]);
@@ -36,8 +37,7 @@ enum
 int main(int argc, char* argv[])
 {
 	char *optValPtr = NULL;
-	char* nullName = (char*)"(NULL)";
-	char* fileName = NULL;	
+	char* fileName = NULL;		// output file name template
 	double max = 1.1;
 	double min = 1.1;
 	bool verbose = false;
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 	int height = 100;
 	int optNum;
 
-	while (--argc > 0)
+	while (--argc > 0)	// First argument is program name
 	{
 		optNum = getOptAndVal(argc, argv, optValPtr);
 		//
@@ -73,8 +73,10 @@ int main(int argc, char* argv[])
 			verbose = true;
 			break;
 		case MISSINGVALUE:						// Option value missing
+			printf("Missing value for %s\n", optValPtr);
 			help();
 		case NOOPTION:							// No option given, just the value -> pgm filename
+			printf("No options given\n");
 			help();
 		case NOTFOUND:							// -option not found
 			printf("%s illegal option\n", optValPtr);
@@ -82,7 +84,7 @@ int main(int argc, char* argv[])
 		} // switch()
 	} // while
 
-	printf("file name: %s\n", ((fileName == NULL) ? nullName : fileName));
+	printf("file name: %s\n", fileName);
 	printf("Max: %g\n", max);
 	printf("Min: %g\n", min);
 	printf("Width: %d\n", width);
